@@ -1,0 +1,9 @@
+requests
+pymongo
+python-dotenv
+beautifulsoup4
+nltk
+rapidfuzz
+feedparser
+scrapy
+scrapy-splash
