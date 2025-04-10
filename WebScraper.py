@@ -251,22 +251,17 @@ def send_scraper_email(success, scraped_count):
 def is_within_scrape_window(timestamp_str):
     try:
         timestamp = datetime.fromisoformat(timestamp_str)
+
         today = datetime.utcnow()
-        
-        if today.day < 6:
-            end_date = datetime(today.year, today.month, 6)
-            if today.month == 1:
-                start_date = datetime(today.year - 1, 12, 6)
-            else:
-                start_date = datetime(today.year, today.month - 1, 6)
+        first_of_this_month = datetime(today.year, today.month, 1)
+
+        # Handle previous month start
+        if today.month == 1:
+            first_of_last_month = datetime(today.year - 1, 12, 1)
         else:
-            start_date = datetime(today.year, today.month, 6)
-            if today.month == 12:
-                end_date = datetime(today.year + 1, 1, 6)
-            else:
-                end_date = datetime(today.year, today.month + 1, 6)
-                
-        return start_date <= timestamp < end_date
+            first_of_last_month = datetime(today.year, today.month - 1, 1)
+
+        return first_of_last_month <= timestamp < first_of_this_month
     except ValueError:
         return False
 
