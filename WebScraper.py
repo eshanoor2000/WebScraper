@@ -399,6 +399,9 @@ class BingNewsSpider(scrapy.Spider):
                 if not link or not title:
                     continue
 
+                if not is_within_scrape_window(published_date):
+                    continue
+
                 domain = self.extract_domain(link)
                 if any(ex in domain for ex in EXCLUDED_DOMAINS):
                     continue
