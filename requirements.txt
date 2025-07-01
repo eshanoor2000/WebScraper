@@ -7,3 +7,4 @@ rapidfuzz
 feedparser
 scrapy
 scrapy-splash
+spacy
