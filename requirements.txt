@@ -8,3 +8,4 @@ feedparser
 scrapy
 scrapy-splash
 spacy
+python-dateutil
